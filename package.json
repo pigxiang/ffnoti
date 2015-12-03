@@ -12,5 +12,11 @@
   "license": "MIT",
   "keywords": [
     "jetpack"
-  ]
+  ],
+  "permissions": {
+    "cross-domain-content": [
+      "http://www.sohu.com/",
+      "http://example.com/"
+    ]
+  }
 }

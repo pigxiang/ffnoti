@@ -1,17 +1,31 @@
-var buttons = require('sdk/ui/button/action');
+var self = require("sdk/self");
 var tabs = require("sdk/tabs");
 
-var button = buttons.ActionButton({
-    id: "mozilla-link",
-    label: "Visit Mozilla",
-    icon: {
-        "16": "./icon-16.png",
-        "32": "./icon-32.png",
-        "64": "./icon-64.png"
-    },
-    onClick: handleClick
+require("sdk/ui/button/action").ActionButton({
+    id: "load-several",
+    label: "load several scripts",
+    icon: "./images/icon-16.png",
+    onClick: function () {
+        tabs.activeTab.attach({
+            contentScriptFile: [
+                self.data.url('./js/jquery.1.7.2.min.js'),
+                self.data.url('./js/mod_huihui.js')]
+        });
+    }
 });
 
-function handleClick(state) {
-    tabs.open("http://www.mozilla.org/");
-}
+//var get_baidu = function () {
+//    var ret = '';
+//    var Request = require("sdk/request").Request;
+//    Request({
+//        url: "http://www.latin1files.org/quijote.txt",
+//        overrideMimeType: "text/plain; charset=latin1",
+//        onComplete: function (response) {
+//            console.log(response.text);
+//            ret = response.text;
+//        }
+//    }).get();
+//    return ret;
+//}
+//
+//self.port.on('get_baidu',get_baidu);
